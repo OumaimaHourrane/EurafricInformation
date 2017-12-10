@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:f="http://java.sun.com/jsf/core"  
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	
+<h:form>
+    <p:menubar style="margin-top: 30px ;margin-bottom: 30px ; margin-left: auto;">
+        <p:submenu label="Insertion des données" icon="ui-icon-document">
+            <p:submenu label="BMCE" icon="ui-icon-contact">
+                		<p:menuitem value="Incidents Applicatifs" url="AjoutIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AjoutIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AjoutIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AjoutIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AjoutIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AjoutIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AjoutIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">
+                <p:menuitem value="Incidents Récurents accès Intermédiaires" url="#" />
+                        <p:menuitem value="Incidents Applicatifs" url="#" />
+                        <p:menuitem value="Incidents Exploitation" url="#" />
+                        <p:menuitem value="Incidents Infra" url="#" />
+           </p:submenu>
+          
+        </p:submenu>
+                <p:menuitem value="Import tickets PS'SOFT" url="Upload_Ticket.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+
+        <p:submenu label="Affichage des rapports" icon="ui-icon-document">
+            <p:submenu label="Hebdomadaire" icon="ui-icon-contact">
+			<p:submenu label="BMCE" icon="ui-icon-contact">
+               <p:menuitem value="Incidents Applicatifs" url="AffIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AffIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AffIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AffIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AffIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AffIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AffIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">
+               
+            </p:submenu>            
+            </p:submenu>
+            <p:submenu label="Mensuel" icon="ui-icon-contact">
+                <p:menuitem value="BMCE" url="Mensuel_BMCE.xhtml"/>     
+	             <p:menuitem value="RMA" url="#"/>
+            </p:submenu>
+           <p:submenu label="Annuel" icon="ui-icon-contact">
+               
+            </p:submenu>
+        </p:submenu>
+
+        <p:submenu label="Gestion d'utilisateur" icon="ui-icon-gear">
+            <p:menuitem value="Lister les utilisateurs" icon="ui-icon-refresh" url="Gestion_Utilisateur.xhtml"/>
+            <p:menuitem value="Ajouter" icon="ui-icon-refresh " url="Ajouter.xhtml"/>            
+        </p:submenu>
+																																																																																																																																																																																																																																																																																																																																																																																																		
+        <f:facet name="options">
+            <p:button value="Compte" icon="ui-icon-newwin" outcome="Compte.xhtml"/>
+            <p:commandButton  value="Logout" icon="ui-icon-extlink" action="#{adminMB.logOut}"/>
+        </f:facet>
+    </p:menubar>
+    
+    
+     <p:outputPanel style="margin-top: 30px ;margin-bottom: 30px ; text-align: center;">
+    	<p:outputLabel style="color: #838484; font-family: 'Lato', sans-serif; font-size: 32px; font-weight: 300; line-height: 58px; margin: 0 0 58px; ">Modification d'utilisateur</p:outputLabel>
+    </p:outputPanel>
+         <p:outputPanel style="margin-top: 30px ;margin-bottom: 30px ; margin-left: auto ; margin-right: auto; position:relative;left:90px;">
+		  <h:panelGrid columns="2" border="0">
+			<p:outputLabel value="Nom : "/>
+			<p:inputText value="#{adminMB.name}" id="name"  required="true"/>	
+			<p:outputLabel value="Email : " />
+			<p:inputText value="#{adminMB.email}" label="Email" id="email" type="email" required="true"/>	
+			<p:outputLabel value="Role : " />
+	   <p:selectOneRadio id="c" value="#{adminMB.role}">
+            <f:selectItem itemLabel="Admin" itemValue="admin" />
+            <f:selectItem itemLabel="User1" itemValue="user1" />
+            <f:selectItem itemLabel="User2" itemValue="user2" />
+        </p:selectOneRadio>	
+			<p:outputLabel value="Mot de passe : "/>
+			<p:password value="#{adminMB.password}" label="Password" id="senha" required="true" />		
+			<p:outputLabel value="Confirmer le mot de passe : "/>
+			<p:password value="#{adminMB.password2}" label="Password_Confirmed"  required="true" />		
+		</h:panelGrid>
+		</p:outputPanel>
+		<p:commandButton ajax = "false" type="submit" action="#{adminMB.modifier}" value="Modifier"  style="position:relative;left:90px;"/> 
+	</h:form>
+</h:body>
+</html>

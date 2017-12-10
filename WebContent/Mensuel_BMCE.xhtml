@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Page d'authentification </title>
+    </h:head>
+
+    <h:body>
+      
+      <p:menubar style="margin-top: 30px ;margin-bottom: 30px ; margin-left: auto;">
+        <p:submenu label="Insertion des données" icon="ui-icon-document">
+            <p:submenu label="BMCE" icon="ui-icon-contact">
+                		<p:menuitem value="Incidents Applicatifs" url="AjoutIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AjoutIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AjoutIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AjoutIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AjoutIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AjoutIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AjoutIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">
+                <p:menuitem value="Incidents Récurents accès Intermédiaires" url="#" />
+                        <p:menuitem value="Incidents Applicatifs" url="#" />
+                        <p:menuitem value="Incidents Exploitation" url="#" />
+                        <p:menuitem value="Incidents Infra" url="#" />
+           </p:submenu>
+          
+        </p:submenu>
+                <p:menuitem value="Import tickets PS'SOFT" url="Upload_Ticket.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+
+        <p:submenu label="Affichage des rapports" icon="ui-icon-document">
+            <p:submenu label="Hebdomadaire" icon="ui-icon-contact">
+			<p:submenu label="BMCE" icon="ui-icon-contact">
+               <p:menuitem value="Incidents Applicatifs" url="AffIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AffIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AffIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AffIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AffIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AffIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AffIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">
+               	 		<p:menuitem value="Incidents Récurents accès Intermédiaires" url="#" />
+                        <p:menuitem value="Incidents Applicatifs" url="#" />
+                        <p:menuitem value="Incidents Exploitation" url="#" />
+                        <p:menuitem value="Incidents Infra" url="#" />
+            </p:submenu>            
+            </p:submenu>
+            <p:submenu label="Mensuel" icon="ui-icon-contact">
+	             <p:menuitem value="BMCE" url="Mensuel_BMCE.xhtml"/>     
+	             <p:menuitem value="RMA" url="#"/>
+            </p:submenu>
+           <p:submenu label="Annuel" icon="ui-icon-contact">  
+	           <p:submenu label="BMCE" icon="ui-icon-contact">
+	               			<p:menuitem value="Evolution des incidents" url="#" />   
+	            </p:submenu>
+	            <p:submenu label="RMA" icon="ui-icon-contact">
+	               	 		<p:menuitem value="Incidents Récurents accès Intermédiaires" url="#" />
+	                        <p:menuitem value="Incidents Applicatifs" url="#" />
+	                        <p:menuitem value="Incidents Exploitation" url="#" />
+	                        <p:menuitem value="Incidents Infra" url="#" />
+	            </p:submenu>           
+           </p:submenu>
+        </p:submenu>
+
+        <p:submenu label="Gestion d'utilisateur" icon="ui-icon-gear">
+            <p:menuitem value="Lister les utilisateurs" icon="ui-icon-refresh" url="Gestion_Utilisateur.xhtml"/>
+            <p:menuitem value="Ajouter" icon="ui-icon-refresh " url="Ajouter.xhtml"/>            
+        </p:submenu>
+																																																																																																																																																																																																																																																																																																																																																																																											
+        <f:facet name="options">
+            <p:button value="Compte" icon="ui-icon-newwin" outcome="Compte.xhtml"/>
+            <p:commandButton  value="Logout" icon="ui-icon-extlink" action="#{adminMB.logOut}"/>
+        </f:facet>
+    </p:menubar>
+        <h2 style=" margin-left : 10px; color: gray;text-decoration: underline;">Accès aux rapports mensuels </h2>
+   
+    <p:panelGrid columns="1" layout="grid">
+					    <p:link outcome="M1.xhtml" value="Evolution des nombres d’incidents durant les 12 derniers mois "/>
+					  	<p:link outcome="M5.xhtml" value="Les incidents applicatifs BMCE les plus longs durant Mars 2016"/>
+					     <p:link outcome="M8.xhtml" value="Répartition des incidents des lignes BMCE par opérateurs durant Mars 2016"/>
+					    <p:link outcome="M9.xhtml" value="Répartition des incidents des GAB BMCE par type durant Mars 2016"/>
+					    <p:link outcome="M10.xhtml" value="Top 10 des incidents récurrents des GAB BMCE durant Mars 2016 "/>
+					    <p:link outcome="M11.xhtml" value="Top 10 des délais de résolution des incidents GAB BMCE les plus longs durant Mars 2016"/>
+					    <p:link outcome="M13.xhtml" value="Top 10 des incidents récurrents des accès agences BMCE durant Mars 2016"/>
+					    <p:link outcome="M14.xhtml" value="Top 10 des délais de résolution des incidents des accès agences BMCE les plus longs durant Mars 2016 " />
+					    <p:link outcome="M15.xhtml" value="Top 10 des accès agences BMCE les moins disponibles durant Mars 2016" />
+		</p:panelGrid>			      
+    </h:body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" 
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	</h:head>
+	<h:body>
+	<p:growl id="growl" sticky="true" showDetail="true"></p:growl>
+	<p:panel header="Log in"  style="width: 400px ;margin-top: 150px ; margin-bottom: auto ; margin-left: auto ; margin-right: auto ; text-align: center;">
+		<h:form class="login-container">
+				<p:growl showDetail="false" life="3000" />
+				<p:outputPanel style="margin-top: 30px ; margin-bottom: 30px ; margin-left: 30px;">
+				<h:panelGrid columns="2" style="text-align: center;">
+				<p:outputLabel value="Email "/>
+				<p:inputText value="#{loginMB.email}" label="Email" id="email" type="email" required="true" style="text-align: center"/>		
+				<p:outputLabel value="Password  "/>
+				<p:password value="#{loginMB.password}" label="Password" id="senha"  required="true" style="text-align: center" />		
+				</h:panelGrid>
+				<p:commandLink  actionListener="#" ajax="false" style="color: orange;">
+        		<h:outputText value="Mot de passe oublié?" />
+    			</p:commandLink>
+				</p:outputPanel>
+				<p:commandButton ajax = "false"  type="submit"  action="#{loginMB.login}" value="Log in" />
+		</h:form>
+	 </p:panel>		
+	</h:body>
+</html>

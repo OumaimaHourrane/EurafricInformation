@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Page d'authentification </title>
+    </h:head>
+
+    <h:body>
+ 
+        <p:menubar style="margin-top: 30px ;margin-bottom: 30px ; margin-left: auto;">
+        <p:submenu label="Insertion des données" icon="ui-icon-document">
+            <p:submenu label="BMCE" icon="ui-icon-contact">
+                		<p:menuitem value="Incidents Applicatifs" url="AjoutIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AjoutIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AjoutIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AjoutIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AjoutIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AjoutIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AjoutIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">
+                <p:menuitem value="Incidents Récurents accès Intermédiaires" url="#" />
+                        <p:menuitem value="Incidents Applicatifs" url="#" />
+                        <p:menuitem value="Incidents Exploitation" url="#" />
+                        <p:menuitem value="Incidents Infra" url="#" />
+           </p:submenu>
+          
+        </p:submenu>
+                <p:menuitem value="Import tickets PS'SOFT" url="Upload_Ticket.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+
+        <p:submenu label="Affichage des rapports" icon="ui-icon-document">
+            <p:submenu label="Hebdomadaire" icon="ui-icon-contact">
+			<p:submenu label="BMCE" icon="ui-icon-contact">
+               <p:menuitem value="Incidents Applicatifs" url="AffIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AffIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AffIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AffIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AffIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AffIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AffIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">
+               
+            </p:submenu>            
+            </p:submenu>
+            <p:submenu label="Mensuel" icon="ui-icon-contact">
+                <p:menuitem value="BMCE" url="Mensuel_BMCE.xhtml"/>     
+	             <p:menuitem value="RMA" url="#"/>
+            </p:submenu>
+           <p:submenu label="Annuel" icon="ui-icon-contact">
+               
+            </p:submenu>
+        </p:submenu>
+
+        <p:submenu label="Gestion d'utilisateur" icon="ui-icon-gear">
+            <p:menuitem value="Lister les utilisateurs" icon="ui-icon-refresh" url="Gestion_Utilisateur.xhtml"/>
+            <p:menuitem value="Ajouter" icon="ui-icon-refresh " url="Ajouter.xhtml"/>            
+        </p:submenu>
+																																																																																																																																																																																																																																																																																																																																																																																																		
+        <f:facet name="options">
+            <p:button value="Compte" icon="ui-icon-newwin" outcome="Compte.xhtml"/>
+            <p:commandButton  value="Logout" icon="ui-icon-extlink" action="#{adminMB.logOut}"/>
+        </f:facet>
+    </p:menubar>
+	
+        <p:dataTable id="tbl" var="incident" widgetVar="IncsTable" 
+    scrollable="true"  
+    scrollHeight="400"  scrollWidth="98%" 
+    style="width:80%; font-size: 80%;" 
+    value="#{ajoutIncReseauBMCEController.listInc2}"  
+    filteredValue="#{ajoutIncReseauBMCEController.filteredIncs}"
+    >
+     	
+       
+       <f:facet name="header">
+            <p:outputPanel style="text-align: right;">
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('IncsTable').filter()" style="width:150px;text-align: right;" placeholder="Enter keyword"/>
+            </p:outputPanel>
+       </f:facet>
+       
+       <p:column headerText="Ticket" filterBy="#{incident.ticketReseau}" filterMatchMode="contains" style="width:120px;text-align: center;">
+           <h:outputText value="#{incident.ticketReseau}" />
+         </p:column>
+        <p:column headerText="Opérateur" filterBy="#{incident.operateur}" filterMatchMode="contains" style="width:200px; text-align: center;">
+               <h:outputText value="#{incident.operateur}"/>
+          </p:column>
+           
+       <p:column headerText="CDF" filterBy="#{incident.cdf}" filterMatchMode="contains" style="width:140px; text-align: center;">
+             
+               <h:outputText value="#{incident.cdf}" />
+              
+        </p:column>
+        <p:column headerText="Agence" filterBy="#{incident.agence}" filterMatchMode="contains" style="width:140px; text-align: center;">
+             
+               <h:outputText value="#{incident.agence}" />
+              
+        </p:column>
+       
+         
+       
+        
+         <p:column headerText="Date Production" filterBy="#{parsers.formatDate(incident.datePro)}" filterMatchMode="contains" style="width:170px;text-align: center;">   
+            
+                    <h:outputText value="#{parsers.formatDate(incident.datePro)}" />
+               
+          </p:column>
+          
+         <p:column headerText="Date Debut Réelle" filterBy="#{parsers.formatDate(incident.dateDebut)}"  filterMatchMode="contains" style="width:170px;text-align: center;">   
+            
+                    <h:outputText value="#{parsers.formatDate(incident.dateDebut)}" />
+          </p:column>
+          
+          <p:column headerText="Date de reprise" filterBy="#{parsers.formatDate(incident.dateFin)}" filterMatchMode="contains" style="width:170px;text-align: center;">   
+           
+                    <h:outputText value="#{parsers.formatDate(incident.dateFin)}" />
+          </p:column>
+         
+          <p:column  headerText="Durée" filterBy="#{incident.duree}" filterMatchMode="contains" style="width:90px;text-align: center;">
+         		
+               	<h:outputText value="#{incident.duree}min" />
+               
+          </p:column>
+           
+         <p:column  headerText="Type Liaison" filterBy="#{incident.typeLiaison}" filterMatchMode="contains" style="width:90px;text-align: center;">
+         		
+               	<h:outputText value="#{incident.typeLiaison}" />
+               
+          </p:column>    
+          <p:column headerText="Commentaire" filterBy="#{incident.commentaire}" filterMatchMode="contains" style="width:200px; text-align: center;">
+               <h:outputText value="#{incident.commentaire}"/>
+          </p:column>        
+          
+          <p:column headerText="Edit" style="width:32px">
+				<h:form>
+	    		<p:commandButton value="EDIT" action="ModifierIncReseau.xhtml">
+		    		<f:setPropertyActionListener value="#{incident}" target="#{ajoutIncReseauBMCEController.selectedInc}" />
+	    		</p:commandButton>
+    		</h:form>  
+       	  </p:column> 
+       <p:column headerText="Delete"  style="width:50px; text-align: center;">
+          <h:form>
+               <p:commandButton action="#{ajoutIncReseauBMCEController.supprimer(incident)}"  icon="ui-icon-closethick" ajax="false" title="Supprimer" />
+          </h:form>
+       </p:column>    
+       </p:dataTable>
+          <h:form>
+     <br></br>
+     
+    <p:outputLabel >Exporter vers : </p:outputLabel>
+    <h:commandButton value="Excel" style="background:rgb(66, 184, 221);font-size: 110%;"  >
+        <p:dataExporter type="xls" target="tbl" fileName="Rapport_Hebdomadaire" pageOnly="true"/>
+    </h:commandButton>
+ 
+    <h:commandButton value="PDF" style="background:rgb(66, 184, 221);font-size: 110%;">
+        <p:dataExporter type="pdf" target="tbl" fileName="Rapport_Hebdomadaire" pageOnly="true" />
+    </h:commandButton>
+ 
+    <h:commandButton value="CSV" style="background:rgb(66, 184, 221);font-size: 110%;">
+        <p:dataExporter type="csv" target="tbl" fileName="Rapport_Hebdomadaire" pageOnly="true" />
+    </h:commandButton>
+    </h:form>
+    </h:body>
+</html>

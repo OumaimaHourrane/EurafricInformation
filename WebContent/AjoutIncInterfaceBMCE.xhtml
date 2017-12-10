@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Page d'authentification </title>
+    </h:head>
+
+    <h:body>
+  
+ 
+        <p:menubar style="margin-top: 30px ;margin-bottom: 30px ; margin-left: auto;">
+        <p:submenu label="Insertion des données" icon="ui-icon-document">
+            <p:submenu label="BMCE" icon="ui-icon-contact">
+                		<p:menuitem value="Incidents Applicatifs" url="AjoutIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AjoutIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AjoutIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AjoutIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AjoutIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AjoutIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AjoutIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">
+                <p:menuitem value="Incidents Récurents accès Intermédiaires" url="#" />
+                        <p:menuitem value="Incidents Applicatifs" url="#" />
+                        <p:menuitem value="Incidents Exploitation" url="#" />
+                        <p:menuitem value="Incidents Infra" url="#" />
+           </p:submenu>
+          
+        </p:submenu>
+                <p:menuitem value="Import tickets PS'SOFT" url="Upload_Ticket.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+
+        <p:submenu label="Affichage des rapports" icon="ui-icon-document">
+            <p:submenu label="Hebdomadaire" icon="ui-icon-contact">
+			<p:submenu label="BMCE" icon="ui-icon-contact">
+               <p:menuitem value="Incidents Applicatifs" url="AffIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AffIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AffIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AffIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AffIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AffIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AffIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">
+               
+            </p:submenu>            
+            </p:submenu>
+            <p:submenu label="Mensuel" icon="ui-icon-contact">
+                <p:menuitem value="BMCE" url="Mensuel_BMCE.xhtml"/>     
+	             <p:menuitem value="RMA" url="#"/>
+            </p:submenu>
+           <p:submenu label="Annuel" icon="ui-icon-contact">
+               
+            </p:submenu>
+        </p:submenu>
+        <p:submenu label="Gestion d'utilisateur" icon="ui-icon-gear">
+            <p:menuitem value="Lister les utilisateurs" icon="ui-icon-refresh" url="Gestion_Utilisateur.xhtml"/>
+            <p:menuitem value="Ajouter" icon="ui-icon-refresh " url="Ajouter.xhtml"/>            
+        </p:submenu>
+																																																																																																																																																																																																																																																																																																																																																																																																		
+        <f:facet name="options">
+            <p:button value="Compte" icon="ui-icon-newwin" outcome="Compte.xhtml"/>
+            <p:commandButton  value="Logout" icon="ui-icon-extlink" action="#{adminMB.logOut}"/>
+        </f:facet>
+    </p:menubar>
+	<p:growl id="growl" showDetail="true" sticky="true" />
+        <p:panel id="authpanel" header="Ajout incidents Interfaces" style="
+                 border-width:1px;	
+                 border-style:groove;
+                 position: relative;
+                 top: 25%;
+                 left: 0.5%;
+                 vertical-align: middle;">
+
+            <h:form id="Ajout" >
+                <h:panelGrid columns="6" cellpadding="2" >
+                    <p:outputLabel value="Ticket PSSoft " for="ticketInt" />
+                    <p:inputText id="ticketInt"  value="#{ajoutIncInterfaceBMCEController.ticketInt}" required="true" >
+                    </p:inputText>
+                    <p:outputLabel value="CDF " for="cdf" />
+                    <p:inputText id="cdf"  value="#{ajoutIncInterfaceBMCEController.cdf}" required="true">
+                    </p:inputText>
+                    <p:outputLabel value="Agence " for="agence" />
+                    <p:inputText id="agence"  value="#{ajoutIncInterfaceBMCEController.agence}" required="true">
+                    </p:inputText>
+                    <p:outputLabel value="Interface " for="interface" />
+                    <p:inputText id="interface"  value="#{ajoutIncInterfaceBMCEController.interface1}" required="true">
+                    </p:inputText>
+                    <p:outputLabel value="Nombre d'incidents " for="nbrInc" />
+                    <p:inputText id="nbrInc"  value="#{ajoutIncInterfaceBMCEController.nbrInc}" required="true" type="number">
+                    </p:inputText>
+                    <p:outputLabel value="Disponibilité " for="disponibilite" />
+                    <p:inputMask id="disponibilite"  value="#{ajoutIncInterfaceBMCEController.disponibilite}" required="true" mask="999,99%">
+                        <f:validator validatorId="disponibiliteValidator" />
+                    </p:inputMask>
+                    <p:outputLabel value="Date Début Réelle" for="ddebut" />
+                    <p:calendar id="ddebut"  value="#{ajoutIncInterfaceBMCEController.dateDebut}" required="true" >
+                    </p:calendar>
+                    <p:outputLabel value="Heure Incident " for="heure_debut" />
+                    <p:inputMask id="heure_debut"  value="#{ajoutIncInterfaceBMCEController.heureIncident}" required="true" mask="99:99">
+                        <f:validator validatorId="heureValidator" />
+                    </p:inputMask>
+                    <p:outputLabel value="Durée " for="duree" />
+                    <p:inputMask id="duree"  value="#{ajoutIncInterfaceBMCEController.duree}" required="true" mask="99j 99h 99min">
+                    </p:inputMask>
+                    <p:outputLabel value="Cumule " for="cumule" />
+                    <p:inputMask id="cumule"  value="#{ajoutIncInterfaceBMCEController.cumule}" required="true" mask="99j 99h 99min">
+                    </p:inputMask>       
+                    <p:outputLabel value="Opérateur " for="operateur" />
+                    <p:inputText id="operateur"  value="#{ajoutIncInterfaceBMCEController.operateur}" required="true">
+                    </p:inputText>
+                </h:panelGrid>
+
+
+
+                <br/>
+                <p:commandButton style="left: 38%" action="#{ajoutIncInterfaceBMCEController.ajouterInc}"
+                                 value="Ajouter" ajax="false"/>
+
+
+
+            </h:form>
+
+
+
+        </p:panel>        
+        
+        <p:panel id="tabpanel" header="Liste des incidents incidents ajoutés" style="
+                 border-width:1px;	
+                 border-style:groove;
+                 position: relative;
+                 top: 10px;
+                 left: 0.5%;
+                 vertical-align: middle;">
+            
+            <p:dataTable var="incident" value="#{ajoutIncInterfaceBMCEController.listInc}">
+                <p:column headerText="Ticket"  style="width:60px; text-align: center;">
+                    <h:outputText value="#{incident.ticketInt}" />
+                </p:column>    
+                <p:column headerText="CDF"  style="width:60px; text-align: center;">
+                    <h:outputText value="#{incident.cdf}" />
+                </p:column>         
+                <p:column headerText="Agence"  style="width:120px; text-align: center;">
+                    <h:outputText value="#{incident.agence}" />
+                </p:column> 
+                <p:column headerText="Interface"  style="width:120px; text-align: center;">
+                    <h:outputText value="#{incident.interface1}" />
+                </p:column>
+                <p:column headerText="Nombre d'incidents"  style="width:60px; text-align: center;">
+                    <h:outputText value="#{incident.nbrInc}" />
+                </p:column>   
+                <p:column headerText="Disponibilité"  style="width:60px; text-align: center;">
+                    <h:outputText value="#{incident.disponibilite}%" />
+                </p:column>   
+                <p:column headerText="Date Début"  style="width:100px; text-align: center;">
+                    <h:outputText value="#{parsers.formatDate(incident.dateDebut)}" />
+                </p:column>
+                <p:column headerText="Durée"  style="width:80px; text-align: center;">
+                    <h:outputText value="#{incident.duree} min" />
+                </p:column>
+                <p:column headerText="Cumule"  style="width:80px; text-align: center;">
+                    <h:outputText value="#{incident.cumule} min" />
+                </p:column>
+                <p:column headerText="Opérateur" style="width:90px; text-align: center;">
+                    <h:outputText value="#{incident.operateur}" />
+                </p:column>            
+                <p:column headerText="Editer"  style="width:50px; text-align: center;">
+                    <h:form id="AfficherList" >
+                        <p:commandButton action="#{ajoutIncInterfaceBMCEController.supprimerInc(incident)}"  icon="ui-icon-closethick" ajax="false" title="Supprimer"  />
+                    </h:form>
+ 
+                </p:column>
+            </p:dataTable>
+            <h:form id="Valider" style="
+                 position: relative;
+                 top: 5px;
+                 vertical-align: middle;">
+                        <p:commandButton action="#{ajoutIncInterfaceBMCEController.validerAjout}"   ajax="false" title="Valider" value="Valider" />
+                    </h:form>
+        </p:panel>
+
+    </h:body>
+</html>

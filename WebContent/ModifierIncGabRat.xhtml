@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Page d'authentification </title>
+    </h:head>
+
+    <h:body>
+        <p:menubar style="margin-top: 30px ;margin-bottom: 30px ; margin-left: auto;">
+        <p:submenu label="Insertion des données" icon="ui-icon-document">
+            <p:submenu label="BMCE" icon="ui-icon-contact">
+                		<p:menuitem value="Incidents Applicatifs" url="AjoutIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AjoutIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AjoutIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AjoutIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AjoutIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AjoutIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AjoutIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">
+                <p:menuitem value="Incidents Récurents accès Intermédiaires" url="#" />
+                        <p:menuitem value="Incidents Applicatifs" url="#" />
+                        <p:menuitem value="Incidents Exploitation" url="#" />
+                        <p:menuitem value="Incidents Infra" url="#" />
+           </p:submenu>
+          
+        </p:submenu>
+                <p:menuitem value="Import tickets PS'SOFT" url="Upload_Ticket.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+
+        <p:submenu label="Affichage des rapports" icon="ui-icon-document">
+            <p:submenu label="Hebdomadaire" icon="ui-icon-contact">
+			<p:submenu label="BMCE" icon="ui-icon-contact">
+               <p:menuitem value="Incidents Applicatifs" url="AffIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AffIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AffIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AffIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AffIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AffIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AffIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">       
+            </p:submenu>            
+            </p:submenu>
+            <p:submenu label="Mensuel" icon="ui-icon-contact">
+            <p:menuitem value="BMCE" url="Mensuel_BMCE.xhtml"/>     
+	             <p:menuitem value="RMA" url="#"/>
+            </p:submenu>
+           <p:submenu label="Annuel" icon="ui-icon-contact">
+            </p:submenu>
+        </p:submenu>
+        <p:submenu label="Gestion d'utilisateur" icon="ui-icon-gear">
+            <p:menuitem value="Lister les utilisateurs" icon="ui-icon-refresh" url="Gestion_Utilisateur.xhtml"/>
+            <p:menuitem value="Ajouter" icon="ui-icon-refresh " url="Ajouter.xhtml"/>            
+        </p:submenu>
+																																																																																																																																																																																																																																																																																																																																																																																																		
+        <f:facet name="options">
+            <p:button value="Compte" icon="ui-icon-newwin" outcome="Compte.xhtml"/>
+            <p:commandButton  value="Logout" icon="ui-icon-extlink" action="#{adminMB.logOut}"/>
+        </f:facet>
+    </p:menubar>
+	<p:growl id="growl" showDetail="true" sticky="true" />
+        <p:panel id="authpanel" header="Ajout incident applicatif" style="
+                 border-width:1px;	
+                 border-style:groove;
+                 position: relative;
+                 top: 25%;
+                 left: 0.5%;
+                 vertical-align: middle;
+                 ">
+            <h:form id="Ajout" >
+                   <h:panelGrid columns="6" cellpadding="2" >
+                    
+                    <p:outputLabel value="Adresse IP " for="adresseIp" />
+                    <p:inputMask id="adresseIp"  value="#{ajoutIncGabRatBMCEController.adresseIp}" required="true" mask="999.999.999.999">
+                    </p:inputMask>
+                    <p:outputLabel value="Ville " for="ville" />
+                    <p:inputText id="ville"  value="#{ajoutIncGabRatBMCEController.ville}" required="true">
+                    </p:inputText>
+                    <p:outputLabel value="Durée " for="duree" />
+                    <p:inputMask id="duree"  value="#{ajoutIncGabRatBMCEController.duree}" required="true" mask="99j 99h 99min">
+                    </p:inputMask>
+                    <p:outputLabel value="Date Incident" for="ddebut" />
+                    <p:calendar id="ddebut"  value="#{ajoutIncGabRatBMCEController.dateDebut}" required="true" >
+                    </p:calendar>                    
+                    <p:outputLabel value="Etat " for="etat" />
+                    <p:inputText id="etat"  value="#{ajoutIncGabRatBMCEController.etat}" required="true" >
+                    </p:inputText>
+                    <p:outputLabel value="Date rétablissement " for="date_fin" />
+                    <p:calendar id="date_fin"  value="#{ajoutIncGabRatBMCEController.dateFin}" required="true">
+                        <f:validator validatorId="dateDebutFinValidator" />
+                    </p:calendar>
+                    <p:outputLabel value="Commentaire " for="commentaire" />
+                    <p:inputTextarea rows="4" cols="25" id="commentaire"  value="#{ajoutIncGabRatBMCEController.commentaire}" required="true">
+                    </p:inputTextarea>
+                </h:panelGrid>
+                <br/>
+                <p:commandButton style="left: 38%" action="#{ajoutIncGabRatBMCEController.modifier}"
+                                 value="Modifier" ajax="false"/>
+            </h:form>
+        </p:panel>        
+        
+ 
+    </h:body>
+</html>

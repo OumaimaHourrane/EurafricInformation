@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Page d'authentification </title>
+    </h:head>
+
+    <h:body>
+      
+      <p:menubar style="margin-top: 30px ;margin-bottom: 30px ; margin-left: auto;">
+        <p:submenu label="Insertion des données" icon="ui-icon-document">
+            <p:submenu label="BMCE" icon="ui-icon-contact">
+                		<p:menuitem value="Incidents Applicatifs" url="AjoutIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AjoutIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AjoutIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AjoutIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AjoutIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AjoutIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AjoutIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">
+                <p:menuitem value="Incidents Récurents accès Intermédiaires" url="#" />
+                        <p:menuitem value="Incidents Applicatifs" url="#" />
+                        <p:menuitem value="Incidents Exploitation" url="#" />
+                        <p:menuitem value="Incidents Infra" url="#" />
+           </p:submenu>
+          
+        </p:submenu>
+                <p:menuitem value="Import tickets PS'SOFT" url="Upload_Ticket.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+
+        <p:submenu label="Affichage des rapports" icon="ui-icon-document">
+            <p:submenu label="Hebdomadaire" icon="ui-icon-contact">
+			<p:submenu label="BMCE" icon="ui-icon-contact">
+               <p:menuitem value="Incidents Applicatifs" url="AffIncAppBMCE.xhtml" />
+                        <p:menuitem value="Incidents Infra" url="AffIncInfraBMCE.xhtml" />
+                        <p:menuitem value="Incidents Réseaux" url="AffIncReseauBMCE.xhtml" />
+                        <p:menuitem value="Incidents Liens GAB Externalisés" url="AffIncLienGabExtBMCE.xhtml" />
+                        <p:menuitem value="Incidents Interfaces" url="AffIncInterfaceBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Rattchés" url="AffIncGabRatBMCE.xhtml" />
+                        <p:menuitem value="Incidents GAB Externalisés" url="AffIncGabExtBMCE.xhtml" />
+            </p:submenu>
+            <p:submenu label="RMA" icon="ui-icon-contact">
+               	 		<p:menuitem value="Incidents Récurents accès Intermédiaires" url="#" />
+                        <p:menuitem value="Incidents Applicatifs" url="#" />
+                        <p:menuitem value="Incidents Exploitation" url="#" />
+                        <p:menuitem value="Incidents Infra" url="#" />
+            </p:submenu>            
+            </p:submenu>
+            <p:submenu label="Mensuel" icon="ui-icon-contact">
+	             <p:menuitem value="BMCE" url="Mensuel_BMCE.xhtml"/>     
+	             <p:menuitem value="RMA" url="#"/>
+            </p:submenu>
+           <p:submenu label="Annuel" icon="ui-icon-contact">  
+	           <p:submenu label="BMCE" icon="ui-icon-contact">
+	               			<p:menuitem value="Evolution des incidents" url="#" />   
+	            </p:submenu>
+	            <p:submenu label="RMA" icon="ui-icon-contact">
+	               	 		<p:menuitem value="Incidents Récurents accès Intermédiaires" url="#" />
+	                        <p:menuitem value="Incidents Applicatifs" url="#" />
+	                        <p:menuitem value="Incidents Exploitation" url="#" />
+	                        <p:menuitem value="Incidents Infra" url="#" />
+	            </p:submenu>           
+           </p:submenu>
+        </p:submenu>
+
+        <p:submenu label="Gestion d'utilisateur" icon="ui-icon-gear">
+            <p:menuitem value="Lister les utilisateurs" icon="ui-icon-refresh" url="Gestion_Utilisateur.xhtml"/>
+            <p:menuitem value="Ajouter" icon="ui-icon-refresh " url="Ajouter.xhtml"/>            
+        </p:submenu>
+																																																																																																																																																																																																																																																																																																																																																																																											
+        <f:facet name="options">
+            <p:button value="Compte" icon="ui-icon-newwin" outcome="Compte.xhtml"/>
+            <p:commandButton  value="Logout" icon="ui-icon-extlink" action="#{adminMB.logOut}"/>
+        </f:facet>
+    </p:menubar>
+          <h2 style="color: gray;">Répartition des incidents des lignes BMCE par opérateurs durant Mars 2016</h2>
+          <p:panelGrid columns="2" style="margin-left:20%" >
+			<p:chart type="pie" model="#{chartView.pieModel1}" style=" width:400px;height:300px" widgetVar="chart1" />
+			<p:chart type="pie" model="#{chartView.pieModel2}" style="width:400px;height:300px" widgetVar="chart2"/>  </p:panelGrid>
+			 <p:outputPanel style="text-align: center; margin-top:15px;margin-bottom:30px;" >
+	    <p:outputLabel >Exporter comme image : </p:outputLabel>
+	    <p:commandButton style="text-align: center;" type="button" value="Export" icon="ui-icon-extlink" onclick="exportChart1()"/>
+	    <p:commandButton style="text-align: center;" type="button" value="Export" icon="ui-icon-extlink" onclick="exportChart2()"/>
+ 		</p:outputPanel>
+		<p:dialog widgetVar="dlg1" showEffect="fade" modal="true" header="Chart as an Image" resizable="false">
+		    <p:outputPanel id="output" layout="block" style="width:1500px; height:400px"/>
+		</p:dialog><p:dialog widgetVar="dlg1" showEffect="fade" modal="true" header="Chart as an Image" resizable="false">
+		    <p:outputPanel id="output1" layout="block" style="width:1500px; height:400px"/>
+		</p:dialog>
+		 
+		<script type="text/javascript">
+		function exportChart1() {
+		    //export image
+		    $('#output').empty().append(PF('chart1').exportAsImage());
+		    //show the dialog
+		    PF('dlg1').show();
+		}function exportChart2() {
+		    //export image
+		    $('#output1').empty().append(PF('chart2').exportAsImage());
+		    //show the dialog
+		    PF('dlg2').show();
+		}
+		</script>
+	</h:body>
+    
+</html>
